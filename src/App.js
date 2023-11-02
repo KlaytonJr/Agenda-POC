@@ -1,23 +1,13 @@
 import './App.css';
-import Navbar from './components/Navbar'
-import { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router';
 
 function App() {
-    const [opened, setOpened] = useState(false);
-
-    const clickButton = () => {
-        setOpened(!opened);
-    }
-
-  return (
-    <div className="App">
-        <Navbar />
-        <button onClick={clickButton}>Clique me</button>
-
-        { opened && <h2>Só apareço quando o opened for true</h2> }
-        
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    );
 }
 
 export default App;

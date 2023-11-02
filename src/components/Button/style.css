@@ -1,0 +1,15 @@
+.button {
+    background-color: #2376F2;
+    color: #fff;
+    width: 100%;
+    border-radius: 10px;
+
+    height: 40px;
+
+    margin: 10px 0;
+    border: none;
+}
+
+.secondary {
+    background-color: red;
+}
