@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Auth from '../pages/Auth';
 import Main from '../pages/Main';
@@ -12,8 +12,8 @@ function Router() {
         <>
             {location.pathname !== '/auth' && <Navbar />}
             <Routes>
-                <Route exact path="/" element={<Main />} />
-                <Route exact path="/auth" element={<Auth />} />
+                <Route path="/auth" element={auth === "" ? <Auth /> : <Navigate to="/" />} />
+                <Route path="/" element={auth === "" ? <Navigate to="/auth" /> : <Main />} />
             </Routes>
         </>
     );
