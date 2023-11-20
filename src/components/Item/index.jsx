@@ -12,7 +12,8 @@ function Item(props) {
     async function deletarTarefa() {
         await apiDelete(`/appointment/${auth}/${props.informacoes._id}`)
             .then(() => {
-                // props.setTarefas();
+                const updatedCart = props.tarefas.filter(item => item._id !== props.informacoes._id);
+                props.setTarefas(updatedCart);
             })
             .catch((error) => {
                 console.error('Erro:', error);
@@ -37,7 +38,7 @@ function Item(props) {
             </div>
 
             <div className="item-icons">
-                <img src={Pencil} />
+                <img src={Pencil} onClick={() => props.editar(props.informacoes._id)} />
                 <img src={Trash} onClick={deletarTarefa}/>
             </div>
         </div>
