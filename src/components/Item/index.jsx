@@ -12,7 +12,8 @@ function Item(props) {
     async function deletarTarefa() {
         await apiDelete(`/appointment/${auth}/${props.informacoes._id}`)
             .then(() => {
-                // props.setTarefas();
+                const updatedCart = props.tarefas.filter(item => item._id !== props.informacoes._id);
+                    props.setTarefas(updatedCart);
             })
             .catch((error) => {
                 console.error('Erro:', error);

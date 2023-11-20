@@ -16,19 +16,19 @@ function Auth() {
 
     const submit = async () => {
         if (ehLogin) {
-            setAuth("1234")
-            navigate("/")
-            // await apiPost('/auth', {
-            //     email: email,
-            //     password: senha
-            // })
-            //     .then((response) => {
-            //         setAuth(response.token.id)
-            //         navigate("/")
-            //     })
-            //     .catch((error) => {
-            //         console.error('Erro:', error);
-            //     })
+        //    setAuth("1234")
+        //    navigate("/")
+            await apiPost('/auth', {
+                email: email,
+                password: senha
+            })
+                .then((response) => {
+                    setAuth(response.data.token.id)
+                    navigate("/")
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                })
         } else {
             await apiPost('/register', {
                 email: email,

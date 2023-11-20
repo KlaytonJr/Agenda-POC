@@ -22,7 +22,7 @@ function ItemListContainer() {
         ]);
         await apiGet(`/appointment/${auth}`)
             .then((response) => {
-                setTarefas(response);
+                setTarefas(response.data);
             })
             .catch((error) => {
                 console.error('Erro:', error);
@@ -49,7 +49,7 @@ function ItemListContainer() {
             <h1>Trafes</h1>
             <button>Adicionar tarefa</button>
         </div>
-        <ItemList tarefas={tarefas} />
+        <ItemList tarefas={tarefas} setTarefas={setTarefas}/>
     </div>
   )
 }
