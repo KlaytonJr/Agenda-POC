@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://code-recrute.onrender.com"
+    baseURL: "http://localhost:8080"
 });
 
 export function apiPost(url, data) {
@@ -9,11 +9,32 @@ export function apiPost(url, data) {
 		headers: {
 			accept: '*/*',
 			'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`
 		}
 	};
 
 	return api.post(url, data, config);
+}
+
+export function apiPatch(url, data) {
+	const config = {
+		headers: {
+			accept: '*/*',
+			'Content-Type': 'application/json',
+		}
+	};
+
+	return api.patch(url, data, config);
+}
+
+export function apiDelete(url) {
+	const config = {
+		headers: {
+			accept: '*/*',
+			'Content-Type': 'application/json',
+		}
+	};
+
+	return api.delete(url, config);
 }
 
 export function apiGet(url) {
@@ -21,7 +42,6 @@ export function apiGet(url) {
 		headers: {
 			accept: '*/*',
 			'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`
 		}
 	};
 

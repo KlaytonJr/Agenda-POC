@@ -1,8 +1,18 @@
 .item {
-    width: 250px;
+    width: 100%;
     background-color: #fff;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
 
-    margin-top: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item-icons {
+    width: 80px;
+
+    display: flex;
+    justify-content: space-between;
 }

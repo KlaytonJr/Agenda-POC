@@ -1,0 +1,14 @@
+.list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-header button {
+    height: 40px;
+}

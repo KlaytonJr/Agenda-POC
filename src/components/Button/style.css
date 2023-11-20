@@ -11,5 +11,7 @@
 }
 
 .secondary {
-    background-color: red;
+    background-color: #fff;
+    border: 2px solid #2376F2;
+    color: #2376F2;
 }
