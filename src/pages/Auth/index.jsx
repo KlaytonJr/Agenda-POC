@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 function Auth() {
-    const { setAuth } = useAuth();
+    const { setAuthToken } = useAuth();
     const navigate = useNavigate();
     const [ehLogin, setEhLogin] = useState(true);
 
@@ -16,14 +16,14 @@ function Auth() {
 
     const submit = async () => {
         if (ehLogin) {
-            // setAuth("1234")
+            // setAuthToken("1234")
             // navigate("/")
             await apiPost('/auth', {
                 email: email,
                 password: senha
             })
                 .then((response) => {
-                    setAuth(response.data.token.id)
+                    setAuthToken(response.data.token.id)
                     navigate("/")
                 })
                 .catch((error) => {

@@ -30,7 +30,7 @@ function Item(props) {
             </div>
             <div>
                 <h3>Descrição</h3>
-                <p>{props.informacoes.describe || "Sem detalhes da vaga"}</p>
+                <p>{props.informacoes.describe || "Sem detalhes da tarefa"}</p>
             </div>
             <div>
                 <h3>Data</h3>
