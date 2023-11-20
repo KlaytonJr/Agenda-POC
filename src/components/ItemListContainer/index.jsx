@@ -27,7 +27,7 @@ function ItemListContainer() {
         if (type === "criar") {
             await apiPost(`/appointment/${auth}`, content)
                 .then((response) => {
-                    setTarefas(response);
+                    setTarefas([...tarefas, response.data]);
                 })
                 .catch((error) => {
                     console.error('Erro:', error);
@@ -35,11 +35,17 @@ function ItemListContainer() {
         } else {
             await apiPatch(`/appointment/${auth}/${id}`, content)
                 .then((response) => {
-                    setTarefas(response);
+                    const copyTarefas = [...tarefas]
+                    let indexToUpdate = copyTarefas.findIndex(item => item._id === response._id);
+
+                    if (indexToUpdate !== -1) copyTarefas[indexToUpdate] = response.data;
+                    setTarefas(copyTarefas);
                 })
                 .catch((error) => {
                     console.error('Erro:', error);
                 })
+            
+            setId("");
         }
     }
 
