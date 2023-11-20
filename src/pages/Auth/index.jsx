@@ -5,6 +5,7 @@ import Button from "../../components/Button"
 import { apiPost } from "../../services/api";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import MyAgenda from '../../assets/img/myagenda.png'
 
 function Auth() {
     const { setAuthToken } = useAuth();
@@ -47,6 +48,10 @@ function Auth() {
     return (
         <div className="auth-container">
             <div className="auth">
+                <div className="auth-header">
+                    <h2>My Agenda</h2>
+                    <img src={MyAgenda} />
+                </div>
                 <Input
                     value={email}
                     onChange={setEmail}

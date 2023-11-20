@@ -6,3 +6,13 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.navbar h1 {
+    color: #5F9EA0;
+}
+
+.navbar button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
