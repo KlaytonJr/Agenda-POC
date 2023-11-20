@@ -57,7 +57,9 @@ function ItemListContainer() {
     }
 
     function editar(id) {
+        console.log('Editar',id)
         setId(id);
+        setType('Editar')
         setShowModal(true);
     }
 
@@ -76,7 +78,7 @@ function ItemListContainer() {
         </div>
         <ItemList tarefas={tarefas} setTarefas={setTarefas} editar={editar} />
 
-        {showModal && <Modal type={type} submit={submit} cancel={cancel} />}
+        {showModal && <Modal type={type} submit={submit} cancel={cancel} id={id} />}
     </div>
   )
 }
