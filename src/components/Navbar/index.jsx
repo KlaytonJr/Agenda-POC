@@ -10,7 +10,9 @@ function NavBar() {
         <div className="navbar flex bg-white-500">
             <p></p>
             <h1>My Agenda</h1>
-            <LogoutIcon onClick={removeAuthToken} />
+            <button onClick={removeAuthToken}>
+                <LogoutIcon/>
+            </button>
         </div>
     )
 }
