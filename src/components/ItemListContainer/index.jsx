@@ -36,7 +36,7 @@ function ItemListContainer() {
             await apiPatch(`/appointment/${auth}/${id}`, content)
                 .then((response) => {
                     const copyTarefas = [...tarefas]
-                    let indexToUpdate = copyTarefas.findIndex(item => item._id === response._id);
+                    let indexToUpdate = copyTarefas.findIndex(item => item._id === response.data._id);
 
                     if (indexToUpdate !== -1) copyTarefas[indexToUpdate] = response.data;
                     setTarefas(copyTarefas);
@@ -65,7 +65,7 @@ function ItemListContainer() {
   return (
     <div className="list-container">
         <div className="list-header">
-            <h1>Trafes</h1>
+            <h1>Tarefas</h1>
             <button onClick={() => {
                 setType("criar")
                 setShowModal(true);

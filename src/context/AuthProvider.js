@@ -3,10 +3,22 @@ import React, { useState, createContext, useContext } from 'react'
 const AuthContext = createContext(undefined);
 
 export default function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(undefined);
+  const [auth, setAuth] = useState(localStorage.getItem('token') || '');
+
+  // Função para definir o token e armazená-lo no localStorage
+  const setAuthToken = (newToken) => {
+    setAuth(newToken);
+    localStorage.setItem('token', newToken);
+  };
+
+  // Função para remover o token e removê-lo do localStorage
+  const removeAuthToken = () => {
+    setAuth('');
+    localStorage.removeItem('token');
+  };
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, setAuthToken, removeAuthToken }}>
       { children }
     </AuthContext.Provider>
   );
