@@ -32,6 +32,8 @@ function ItemListContainer() {
                 .catch((error) => {
                     console.error('Erro:', error);
                 })
+
+            setShowModal(false);
         } else {
             await apiPatch(`/appointment/${auth}/${id}`, content)
                 .then((response) => {
@@ -46,6 +48,7 @@ function ItemListContainer() {
                 })
             
             setId("");
+            setShowModal(false);
         }
     }
 
