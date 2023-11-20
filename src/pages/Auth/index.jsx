@@ -16,8 +16,8 @@ function Auth() {
 
     const submit = async () => {
         if (ehLogin) {
-        //    setAuth("1234")
-        //    navigate("/")
+            // setAuth("1234")
+            // navigate("/")
             await apiPost('/auth', {
                 email: email,
                 password: senha

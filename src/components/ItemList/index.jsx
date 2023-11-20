@@ -2,11 +2,10 @@ import Item from "../Item"
 import "./style.css"
 import React from 'react'
 
-function ItemList({ setTarefas,tarefas }) {
+function ItemList({ tarefas, setTarefas, editar }) {
     return (
         <div className="item-list">
-            { tarefas.map((tarefa) => <Item  informacoes={tarefa} tarefas={tarefas} setTarefas={setTarefas}
-  />) }
+            { tarefas.map((tarefa) => <Item  informacoes={tarefa} tarefas={tarefas} setTarefas={setTarefas} editar={editar} />) }
         </div>
     )
 }

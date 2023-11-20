@@ -2,24 +2,18 @@ import ItemList from "../ItemList"
 import "./style.css"
 import React, { useEffect, useState } from 'react'
 import { useAuth } from "../../context/AuthProvider";
-import { apiPost, apiGet } from '../../services/api'
+import { apiPost, apiGet, apiPatch } from '../../services/api'
+import Modal from "../Modal";
 
 function ItemListContainer() {
     const { auth } = useAuth();
 
     const [tarefas, setTarefas] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [type, setType] = useState("");
+    const [id, setId] = useState("");
 
     async function pegarTarefas() {
-        setTarefas([
-            {
-                _id: "6546db75e2fb4587f15efc34",
-                title: "Jantar",
-                user: "6546624161e86388105650c6",
-                describe: "Não esquecer de levar a carteira e abastecer o carro",
-                date_hour: "2023-11-01T11:00:00.000Z",
-                __v: 0
-            }
-        ]);
         await apiGet(`/appointment/${auth}`)
             .then((response) => {
                 setTarefas(response.data);
@@ -29,14 +23,33 @@ function ItemListContainer() {
             })
     }
 
-    async function adicionarTarefa() {
-        await apiPost(`/appointment/${auth}`)
-            .then((response) => {
-                setTarefas(response);
-            })
-            .catch((error) => {
-                console.error('Erro:', error);
-            })
+    async function submit(type, content) {    
+        if (type === "criar") {
+            await apiPost(`/appointment/${auth}`, content)
+                .then((response) => {
+                    setTarefas(response);
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                })
+        } else {
+            await apiPatch(`/appointment/${auth}/${id}`, content)
+                .then((response) => {
+                    setTarefas(response);
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                })
+        }
+    }
+
+    function cancel() {
+        setShowModal(false);
+    }
+
+    function editar(id) {
+        setId(id);
+        setShowModal(true);
     }
 
     useEffect(() => {
@@ -47,9 +60,14 @@ function ItemListContainer() {
     <div className="list-container">
         <div className="list-header">
             <h1>Trafes</h1>
-            <button>Adicionar tarefa</button>
+            <button onClick={() => {
+                setType("criar")
+                setShowModal(true);
+            }}>Adicionar tarefa</button>
         </div>
-        <ItemList tarefas={tarefas} setTarefas={setTarefas}/>
+        <ItemList tarefas={tarefas} setTarefas={setTarefas} editar={editar} />
+
+        {showModal && <Modal type={type} submit={submit} cancel={cancel} />}
     </div>
   )
 }
